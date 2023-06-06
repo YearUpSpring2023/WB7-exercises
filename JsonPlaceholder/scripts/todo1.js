@@ -11,16 +11,20 @@ function init(){
     console.log("init...")
 }
 
+
 function onTodoIdBtnClick(){
     console.log("button click...")
     
     fetch("https://jsonplaceholder.typicode.com/todos/" + todoid.value)
     .then(response => response.json())
-    .then(data => {
+    .then(processIncomingTodoData);
+
+}
+
+
+function processIncomingTodoData(data){
         console.log(data);
 
         let message = `TODO: ID:${data.id} ${data.title} Completed: ${data.completed} User: ${data.userId}`
         output.innerHTML = message;
-    });
-
-}
+};
